@@ -13,4 +13,7 @@ public interface TwoService {
     TwoDto getTwoById(long id);
 
     void deleteTwoById(long id);
+
+    TwoDto updateTwo(TwoDto twoDto, long id);
+
 }

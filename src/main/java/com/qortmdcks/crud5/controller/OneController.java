@@ -40,4 +40,11 @@ public class OneController {
         oneServiceImpl.deleteOneById(id);
         return new ResponseEntity<>("deleted post", HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<OneDto> updateOne(@PathVariable(name = "id") long id, @Valid @RequestBody OneDto oneDto){
+        OneDto oneResponse = oneServiceImpl.updateOne(oneDto, id);
+
+        return new ResponseEntity<>(oneResponse, HttpStatus.OK);
+    }
 }

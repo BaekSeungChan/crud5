@@ -49,4 +49,18 @@ public class OneServiceImpl implements OneService {
         One one = oneRepository.findById(id).orElseThrow(() -> new RuntimeException("No id"));
         oneRepository.delete(one);
     }
+
+    @Override
+    public OneDto updateOne(OneDto oneDto, long id){
+        One one = oneRepository.findById(id).orElseThrow(() -> new RuntimeException("No id"));
+
+        one.setName(oneDto.getName());
+        one.setAge(oneDto.getAge());
+        one.setNumber(oneDto.getNumber());
+
+        One saveOne = oneRepository.save(one);
+
+        return modelMapper.map(saveOne, OneDto.class);
+
+    }
 }

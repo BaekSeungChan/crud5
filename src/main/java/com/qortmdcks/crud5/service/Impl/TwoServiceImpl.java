@@ -50,5 +50,18 @@ public class TwoServiceImpl implements TwoService {
         twoRepository.delete(two);
     }
 
+    @Override
+    public TwoDto updateTwo(TwoDto twoDto, long id){
+        Two two = twoRepository.findById(id).orElseThrow(() -> new RuntimeException("No id"));
+
+        two.setName(twoDto.getName());
+        two.setAge(twoDto.getAge());
+        two.setNumber(twoDto.getNumber());
+
+        Two saveTwo = twoRepository.save(two);
+
+        return modelMapper.map(saveTwo, TwoDto.class);
+    }
+
 
 }

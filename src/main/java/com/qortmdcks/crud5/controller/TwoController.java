@@ -41,5 +41,11 @@ public class TwoController {
     }
 
 
+    @PutMapping("/{id}")
+    public ResponseEntity<TwoDto> updateTwo(@PathVariable(name = "id") long id, @Valid @RequestBody TwoDto twoDto){
+        TwoDto twoResponse = twoService.updateTwo(twoDto, id);
+
+        return new ResponseEntity<>(twoResponse, HttpStatus.OK);
+    }
 
 }
