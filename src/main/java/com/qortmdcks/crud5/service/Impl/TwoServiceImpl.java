@@ -21,6 +21,7 @@ public class TwoServiceImpl implements TwoService {
         this.modelMapper = modelMapper;
     }
 
+    @Override
     public TwoDto createTwo(TwoDto twoDto){
         Two two = modelMapper.map(twoDto, Two.class);
         Two saveTwo = twoRepository.save(two);
@@ -28,9 +29,26 @@ public class TwoServiceImpl implements TwoService {
         return modelMapper.map(saveTwo, TwoDto.class);
     }
 
+    @Override
     public List<TwoDto> getAllTwo(){
         List<Two> twos = twoRepository.findAll();
 
         return twos.stream().map((two) -> modelMapper.map(two, TwoDto.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public TwoDto getTwoById(long id){
+        Two two = twoRepository.findById(id).orElseThrow(()-> new RuntimeException("No id"));
+
+        return modelMapper.map(two, TwoDto.class);
+    }
+
+    @Override
+    public void deleteTwoById(long id){
+        Two two = twoRepository.findById(id).orElseThrow(() -> new RuntimeException("No id"));
+
+        twoRepository.delete(two);
+    }
+
+
 }

@@ -27,4 +27,19 @@ public class TwoController {
     public ResponseEntity<List<TwoDto>> getAllTwo(){
         return ResponseEntity.ok(twoService.getAllTwo());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TwoDto> getTwoById(@PathVariable(name = "id") long id){
+        return ResponseEntity.ok(twoService.getTwoById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTwoById(@PathVariable(name = "id") long id){
+        twoService.deleteTwoById(id);
+
+        return new ResponseEntity<>("deleted post", HttpStatus.OK);
+    }
+
+
+
 }

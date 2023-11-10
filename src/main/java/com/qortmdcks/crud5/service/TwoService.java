@@ -9,4 +9,8 @@ public interface TwoService {
     TwoDto createTwo(TwoDto twoDto);
 
     List<TwoDto> getAllTwo();
+
+    TwoDto getTwoById(long id);
+
+    void deleteTwoById(long id);
 }

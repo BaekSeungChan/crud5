@@ -18,9 +18,12 @@ public class Two {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column()
     private String name;
 
+    @Column()
     private String age;
 
+    @Column()
     private int number;
 }
