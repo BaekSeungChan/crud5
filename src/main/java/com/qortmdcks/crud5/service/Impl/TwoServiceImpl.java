@@ -7,6 +7,9 @@ import com.qortmdcks.crud5.service.TwoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TwoServiceImpl implements TwoService {
 
@@ -23,5 +26,11 @@ public class TwoServiceImpl implements TwoService {
         Two saveTwo = twoRepository.save(two);
 
         return modelMapper.map(saveTwo, TwoDto.class);
+    }
+
+    public List<TwoDto> getAllTwo(){
+        List<Two> twos = twoRepository.findAll();
+
+        return twos.stream().map((two) -> modelMapper.map(two, TwoDto.class)).collect(Collectors.toList());
     }
 }

@@ -6,6 +6,9 @@ import com.qortmdcks.crud5.repository.OneRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class OneService {
 
@@ -22,5 +25,11 @@ public class OneService {
         One saveOne = oneRepository.save(one);
 
         return modelMapper.map(saveOne, OneDto.class);
+    }
+
+    public List<OneDto> getAllOne(){
+        List<One> ones = oneRepository.findAll();
+
+        return ones.stream().map((one) -> modelMapper.map(one, OneDto.class)).collect(Collectors.toList());
     }
 }
